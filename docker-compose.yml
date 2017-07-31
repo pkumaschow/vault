@@ -10,7 +10,8 @@ services:
       volumes:
         - ./file:/vault/file:rw
         - ./config:/vault/config:rw
+        - ./ssl:/vault/ssl:rw
       cap_add:
         - IPC_LOCK
       restart: always
-      entrypoint: vault server -config=/vault/config
+      entrypoint: vault server -config=/vault/config/vault.json
