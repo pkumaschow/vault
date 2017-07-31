@@ -1,4 +1,4 @@
-Running a local dockerise vault server.
+Running a local dockerised vault server.
 
 Once this is running you need to run this:
 
