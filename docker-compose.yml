@@ -1,0 +1,16 @@
+version: "2"
+services:
+    vault:
+      privileged: true
+      image: vault
+      dns:
+        - 8.8.8.8
+      ports: 
+        - "0.0.0.0:8200:8200"
+      volumes:
+        - ./file:/vault/file:rw
+        - ./config:/vault/config:rw
+      cap_add:
+        - IPC_LOCK
+      restart: always
+      entrypoint: vault server -config=/vault/config
