@@ -1,4 +1,6 @@
-Running a local dockerised vault server.
+Run a local dockerised vault server.
+
+Secrets are persisted to the file system.
 
 Once this is running you need to run this:
 
@@ -12,6 +14,8 @@ https://www.vaultproject.io/
 
 Generating a self-signed certificate can be done manually. 
 Eventually this will be done when the docker image is built
+
+##Self signed SSL
 
 In the ssl directory
 
@@ -31,4 +35,10 @@ openssl ca -batch -config vault-ca.conf -notext -in vault.csr -out vault.crt -ce
 ```
 
 Edit docker-compose.yml to use the the config file vault_ssl.json
+
+For now to use the vault you'll need to export the following:
+
+```
+export VAULT_SKIP_VERIFY=1
+```
 
