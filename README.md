@@ -15,7 +15,7 @@ https://www.vaultproject.io/
 Generating a self-signed certificate can be done manually. 
 Eventually this will be done when the docker image is built
 
-##Self signed SSL
+## Self signed SSL
 
 In the ssl directory
 
