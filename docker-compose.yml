@@ -2,7 +2,7 @@ version: "2"
 services:
     vault:
       privileged: true
-      image: vault
+      build: .
       dns:
         - 8.8.8.8
       ports: 
