@@ -14,4 +14,4 @@ services:
       cap_add:
         - IPC_LOCK
       restart: always
-      entrypoint: vault server -config=/vault/config/vault.json
+      entrypoint: vault server -config=/vault/config/vault_ssl.json

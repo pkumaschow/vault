@@ -42,3 +42,5 @@ For now to use the vault you'll need to export the following:
 export VAULT_SKIP_VERIFY=1
 ```
 
+Don't do this for a production server
+

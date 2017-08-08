@@ -2,7 +2,6 @@ FROM vault
 
 MAINTAINER Peter Kumaschow <pkumaschow@gmail.com>
 
-ENV VAULT_SKIP_VERIFY=1
 ARG subj="/C=AU/ST=VIC/L=MEL/O=VAULT/CN=LOCAL_VAULT"
 RUN apk update
 RUN apk add openssl
@@ -36,7 +35,3 @@ RUN openssl ca \
   -out vault.crt \
   -cert root.cer \
   -keyfile privkey.pem
-
- 
-
-
