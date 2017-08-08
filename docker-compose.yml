@@ -15,3 +15,18 @@ services:
         - IPC_LOCK
       restart: always
       entrypoint: vault server -config=/vault/config/vault_ssl.json
+    consul:
+      image: consul:latest
+      environment:
+        - "CONSUL_LOCAL_CONFIG={\"disable_update_check\": true}"
+          #      entrypoint:
+          #        - consul
+          #        - agent
+          #        - -server
+          #        - -bootstrap-expect=3
+          #        - -data-dir=/tmp/consuldata
+          #        - -bind={{ GetInterfaceIP "eth0" }}
+          #        - -client=0.0.0.0
+          #        - -ui
+      ports: 
+        - "8500:8500"

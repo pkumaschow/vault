@@ -1,5 +1,17 @@
 {
-  "backend": {"file": {"path": "/vault/file"}},
+  "backend": {
+      "consul": 
+      {
+          "path": "vault/", 
+          "address": "consul:8500", 
+          "scheme": "http", 
+          "datacenter" : "dc1",
+          "acl_datacenter": "dc1",
+          "acl_master_token": "pa33w0rd",
+          "acl_default_policy": "deny",
+          "acl_down_policy": "extend_cache"
+      }
+  },
   "listener": {"tcp": {"address": "0.0.0.0:8200", "tls_cert_file": "/vault.crt", "tls_key_file": "/vault.key"}},
   "default_lease_ttl": "24h",
   "max_lease_ttl": "96h"
