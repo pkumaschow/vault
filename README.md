@@ -44,3 +44,11 @@ export VAULT_SKIP_VERIFY=1
 
 Don't do this for a production server
 
+On Fedora you can do the following to have the ca used to sign the vault cert to be recognised as vault so you don't need to skip verification.
+
+```
+docker cp <container_id>:/root.cer ./root.cer
+sudo mv root.cer /etc/pki/ca-trust/source/anchors/vault.cer
+sudo update-ca-trust
+```
+
