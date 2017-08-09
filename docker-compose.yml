@@ -8,7 +8,7 @@ services:
       ports: 
         - "0.0.0.0:8200:8200"
       volumes:
-        - ./file:/vault/file:rw
+        - file:/vault/file:rw
         - ./config:/vault/config:rw
         - ./ssl:/vault/ssl:rw
       cap_add:
@@ -17,16 +17,22 @@ services:
       entrypoint: vault server -config=/vault/config/vault_ssl.json
     consul:
       image: consul:latest
+      volumes:
+        - data:/consul/data:rw
       environment:
         - "CONSUL_LOCAL_CONFIG={\"disable_update_check\": true}"
-          #      entrypoint:
-          #        - consul
-          #        - agent
-          #        - -server
-          #        - -bootstrap-expect=3
-          #        - -data-dir=/tmp/consuldata
-          #        - -bind={{ GetInterfaceIP "eth0" }}
-          #        - -client=0.0.0.0
-          #        - -ui
+      entrypoint:
+        - consul
+        - agent
+        - -server
+        - -bootstrap-expect=1
+        - -data-dir=/tmp/consuldata
+        - -bind={{ GetInterfaceIP "eth0" }}
+        - -client=0.0.0.0
+        - -ui
+      restart: always
       ports: 
         - "8500:8500"
+volumes:
+    file:
+    data:
