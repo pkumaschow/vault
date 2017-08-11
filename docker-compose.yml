@@ -14,6 +14,7 @@ services:
       cap_add:
         - IPC_LOCK
       entrypoint: vault server -config=/vault/config/vault_ssl.json
+      restart: always
       depends_on:
         - consul
     consul:
@@ -32,6 +33,7 @@ services:
         - -ui
       ports: 
         - "8500:8500"
+      restart: always
 volumes:
     file:
     data:
