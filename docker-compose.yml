@@ -6,15 +6,16 @@ services:
       dns:
         - 8.8.8.8
       ports: 
-        - "0.0.0.0:8200:8200"
+        - "8200:8200"
       volumes:
         - file:/vault/file:rw
         - ./config:/vault/config:rw
         - ./ssl:/vault/ssl:rw
       cap_add:
         - IPC_LOCK
-      restart: always
       entrypoint: vault server -config=/vault/config/vault_ssl.json
+      depends_on:
+        - consul
     consul:
       image: consul:latest
       volumes:
@@ -25,12 +26,10 @@ services:
         - consul
         - agent
         - -server
+        - -data-dir=/consul/data
         - -bootstrap-expect=1
-        - -data-dir=/tmp/consuldata
-        - -bind={{ GetInterfaceIP "eth0" }}
         - -client=0.0.0.0
         - -ui
-      restart: always
       ports: 
         - "8500:8500"
 volumes:

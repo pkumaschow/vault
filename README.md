@@ -36,7 +36,9 @@ openssl ca -batch -config vault-ca.conf -notext -in vault.csr -out vault.crt -ce
 
 Edit docker-compose.yml to use the the config file vault_ssl.json
 
-For now to use the vault you'll need to export the following:
+## Trusting the Root Certificate
+
+You could skip verification of the cert but this is not recommended
 
 ```
 export VAULT_SKIP_VERIFY=1
@@ -50,5 +52,12 @@ On Fedora you can do the following to have the ca used to sign the vault cert to
 docker cp <container_id>:/root.cer ./root.cer
 sudo mv root.cer /etc/pki/ca-trust/source/anchors/vault.cer
 sudo update-ca-trust
+```
+
+On OSx 
+
+```
+docker cp <container_id>:/root.cer ./vault.cer
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ./vault.cer
 ```
 
