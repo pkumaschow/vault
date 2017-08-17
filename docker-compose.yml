@@ -17,6 +17,13 @@ services:
       restart: always
       depends_on:
         - consul
+    ldap:
+      image: osixia/openldap:1.1.9
+      environment:
+        - LDAP_ORGANISATION=MY COMPANY
+        - LDAP_DOMAIN=my-company.com
+        - LDAP_ADMIN_PASSWORD=password
+        - LDAP_TLS=false
     consul:
       image: consul:latest
       volumes:
